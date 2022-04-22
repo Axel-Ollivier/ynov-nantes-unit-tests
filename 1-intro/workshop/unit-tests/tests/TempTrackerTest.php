@@ -11,6 +11,7 @@ class TempTrackerTest extends TestCase
         $temp_tracker = new TempTracker();
         $temp_tracker->insert(1);
         $this->assertEquals([1], $temp_tracker->get_temps());
+
     }
 
     public function test_insert_out_of_range()
