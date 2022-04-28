@@ -1,4 +1,4 @@
-const {Minesweeper} = require("../src/minesweeper");
+const Minesweeper = require("../src/minesweeper");
 
 describe("Minesweeper", () => {
 
@@ -26,24 +26,25 @@ describe("Minesweeper", () => {
     //Board
     it("Should be able to check if a cell is a mine", () => {
         const minesweeper = new Minesweeper();
-        minesweeper.mines = [{row: 0, col: 0}];
-        expect(minesweeper.isMine({row: 0, col: 0})).toBe(true);
+        minesweeper.mines = [{row: 0, column: 0}];
+        expect(minesweeper.isMine({row: 0, column: 0})).toBe(true);
     });
 
     it("Should be able to check if a cell is revealed", () => {
         const minesweeper = new Minesweeper();
-        minesweeper.revealed = [{row: 0, col: 0}];
-        expect(minesweeper.isRevealed({row: 0, col: 0})).toBe(true);
+        minesweeper.revealed = [{row: 0, column: 0}];
+        expect(minesweeper.isRevealed({row: 0, column: 0})).toBe(true);
     });
 
     it("Should be able to check the number of mines around a cell", () => {
         const minesweeper = new Minesweeper();
+        minesweeper.createGame(5, 5, 3);
         minesweeper.mines = [
-            {row: 0, col: 1},
-            {row: 1, col: 0},
-            {row: 1, col: 1},
+            {row: 0, column: 1},
+            {row: 1, column: 0},
+            {row: 1, column: 1},
         ];
-        expect(minesweeper.getMinesAround({row: 0, col: 0})).toBe(3);
+        expect(minesweeper.getMinesAround({row: 0, column: 0})).toBe(3);
     });
 
 });
