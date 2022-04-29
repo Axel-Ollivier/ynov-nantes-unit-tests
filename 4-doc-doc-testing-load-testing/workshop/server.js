@@ -1,12 +1,16 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const swaggerUi = require('swagger-ui-express');
 
 const PORT = process.env.PORT || 5000;
 const app = express();
 
+const swaggerDocument = require("./swagger.json");
+
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+app.use('/api', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(express.static(__dirname + '/public'));
 
 app.get('/todo', (req, res) => {
