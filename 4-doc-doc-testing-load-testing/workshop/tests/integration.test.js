@@ -76,4 +76,24 @@ describe("ToDo", () => {
     expect(todo.length).toBe(1);
     expect(todo[0].text).toBe(newToDo.text);
   });
+
+  test("update todo", async () => {
+    await ToDo.deleteMany({}, (err) => {
+      if (err) console.log(`error: ${err}`);
+    });
+
+    const newToDo = new ToDo({
+      text: "Test update",
+    });
+
+    await newToDo.save();
+
+    const todo = await ToDo.updateOne( { text: newToDo.text }, { text: "Test update 2" }, (err, todo) => {
+      if (err) return err;
+      return todo;
+    });
+
+    expect(todo.length).toBe(1);
+    expect(todo[0].text).toBe("Test update 2");
+  });
 });
