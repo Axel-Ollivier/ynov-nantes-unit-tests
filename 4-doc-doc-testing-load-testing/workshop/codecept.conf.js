@@ -6,7 +6,7 @@ setHeadlessWhen(process.env.HEADLESS);
 setCommonPlugins();
 
 exports.config = {
-    tests: './tests/e2e.test.js',
+    tests: './tests/e2e_test.js',
     output: 'dist',
     helpers: {
         Playwright: {
