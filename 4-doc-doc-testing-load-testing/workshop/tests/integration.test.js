@@ -33,4 +33,18 @@ describe("ToDo", () => {
         expect(titles).toContain("Test");
     });
 
+    test("Set done succeeds", async () => {
+        const response = await api.get("/todo");
+        const toDo = response.body[0];
+        const id = toDo._id;
+        await api
+            .put(`/todo/${id}`)
+            .send({done: true})
+            .expect(200)
+            .expect("Content-Type", /application\/json/);
+        const response2 = await api.get("/todo");
+        const toDo2 = response2.body[0];
+        expect(toDo2.done).toBe(true);
+    });
+
 });
