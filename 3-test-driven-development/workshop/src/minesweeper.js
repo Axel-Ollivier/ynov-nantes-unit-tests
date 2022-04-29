@@ -56,6 +56,10 @@ class Minesweeper {
         }
         return minesAround;
     }
+
+    isValidInput(cell){
+        return cell.row >=0 && cell.row < this.numberOfRows && cell.column >= 0 && cell.column < this.numberOfColumns;
+    }
 }
 
 module.exports = Minesweeper;
